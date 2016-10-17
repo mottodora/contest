@@ -1,18 +1,21 @@
+use std::ascii::AsciiExt;
+
 fn getline() -> String{
     let mut ret = String::new();
     std::io::stdin().read_line(&mut ret).ok();
-    return ret;
+    ret
 }
 
-fn capslock(c: char) -> String {
-    match c {
-        c if c.is_uppercase() => c.to_string().to_lowercase(),
-        _                     => c.to_string().to_uppercase(),
+fn capslock(c: char) -> char {
+    if c.is_uppercase() {
+        c.to_ascii_lowercase()
+    } else {
+        c.to_ascii_uppercase()
     }
 }
 
 fn convert(string: &str) -> String {
-    string.chars().map(capslock).collect::<String>()
+    string.chars().map(capslock).collect()
 }
 
 fn main() {
